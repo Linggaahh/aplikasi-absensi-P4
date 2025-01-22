@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.add-button {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.add-button:hover {
+    background: linear-gradient(90deg, #2575fc, #6a11cb);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+    font-size: 18px;
+    color: #333;
+}
+
+.actions {
+    font-size: 16px;
+}
+
+.actions a {
+    color: #3498db;
+    margin-right: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.actions a:hover {
+    color: #2980b9;
+}
+
+.actions a.delete {
+    color: #e74c3c;
+}
+
+.actions a.delete:hover {
+    color: #c0392b;
+}
+
+.material-icons {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .add-button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .actions {
+        margin-top: 10px;
+        text-align: left;
+    }
+}
