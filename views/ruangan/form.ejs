@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= room ? 'Edit' : 'Create' %> room</title>
+    <title><%= room ? 'Edit' : 'Buat' %> Ruangan</title>
     <style>
         /* Resetting default styles */
         * {
@@ -15,31 +15,32 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #d32f2f, #f44336); /* Red and White */
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
+            overflow: hidden;
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
             padding: 40px;
             width: 100%;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 32px;
             color: #333;
             margin-bottom: 30px;
             text-align: center;
             font-weight: bold;
+            color: #d32f2f;
         }
 
         .form-group {
@@ -60,15 +61,15 @@
             padding: 12px 15px;
             font-size: 16px;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             outline: none;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             transition: all 0.3s ease;
         }
 
         input[type="text"]:focus,
         input[type="date"]:focus {
-            border-color: #6a11cb;
+            border-color: #d32f2f;
             background-color: #fff;
         }
 
@@ -76,7 +77,7 @@
             width: 100%;
             padding: 15px;
             font-size: 18px;
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            background: linear-gradient(90deg, #d32f2f, #f44336);
             color: white;
             border: none;
             border-radius: 8px;
@@ -86,7 +87,7 @@
         }
 
         button:hover {
-            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            background: linear-gradient(90deg, #f44336, #d32f2f);
         }
 
         /* Error message styles */
@@ -101,8 +102,9 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -112,24 +114,43 @@
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
             }
 
             h1 {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             button {
                 font-size: 16px;
                 padding: 12px;
             }
+
+            input[type="text"],
+            input[type="date"] {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
         }
+
+        /* Flag of Indonesia at the bottom */
+        .indonesia-flag {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background: linear-gradient(to bottom, #f44336 50%, #ffffff 50%);
+            border-radius: 8px;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1><%= room ? 'Edit room' : 'Create room' %></h1>
+        <h1><%= room ? 'Edit Ruangan' : 'Buat Ruangan' %></h1>
         <form id="roomForm" action="<%= room ? '/ruangan/' + room.room_id + '/edit' : '/ruangan/tambah' %>" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="nama">Nama:</label>
@@ -140,12 +161,15 @@
             <div class="form-group">
                 <label for="lokasi">Lokasi:</label>
                 <input type="text" id="lokasi" name="lokasi" value="<%= room ? room.lokasi : '' %>" required>
-                <span class="error" id="lokasiError">lokasi tidak boleh kosong</span>
+                <span class="error" id="lokasiError">Lokasi tidak boleh kosong</span>
             </div>
 
-            <button type="submit"><%= room ? 'Update' : 'Create' %></button>
+            <button type="submit"><%= room ? 'Update' : 'Buat' %></button>
         </form>
     </div>
+
+    <!-- Indonesia Flag -->
+    <div class="indonesia-flag"></div>
 
     <script>
         // Form validation function
@@ -163,7 +187,7 @@
                 isValid = false;
             }
 
-            // Validate lokasi
+            // Validate Lokasi
             const lokasi = document.getElementById('lokasi').value;
             if (!lokasi.trim()) {
                 document.getElementById('lokasiError').style.display = 'block';
