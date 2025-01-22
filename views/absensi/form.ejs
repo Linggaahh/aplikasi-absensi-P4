@@ -141,30 +141,26 @@
                 <input type="text" id="nama_tamu" name="nama_tamu" value="<%= absensi ? absensi.nama_tamu : '' %>" required>
             </div>
 
-            <!-- Pilih Ruangan -->
             <div class="form-group">
-                <label for="room_id">Pilih Ruangan:</label>
-                <select id="room_id" name="room_id" required>
-                    <option value="">Pilih Ruangan</option>
-                    <% rooms.forEach(function(room) { %>
-                        <option value="<%= room.room_id %>" 
-                            <%= absensi && absensi.room_id && absensi.room_id === room.room_id ? 'selected' : '' %>>
-                            <%= room.nama %> - <%= room.lokasi %>
-                        </option>
-                    <% }) %>
-                </select>
+                <label for="room_id">Ruangan:</label>
+                <input type="text" id="room_name" name="room_name" 
+                    value="<%= rooms.find(room => room.room_id == room_id)?.nama %> - <%= rooms.find(room => room.room_id == room_id)?.lokasi %>" readonly>
+                <input type="hidden" id="room_id" name="room_id" value="<%= room_id %>">
             </div>
+            
 
             <!-- Waktu Masuk -->
             <div class="form-group">
                 <label for="waktu_masuk">Waktu Masuk:</label>
-                <input type="time" id="waktu_masuk" name="waktu_masuk" value="<%= absensi ? absensi.waktu_masuk : '' %>" required>
+                <input type="datetime-local" id="waktu_masuk" name="waktu_masuk" 
+                    value="<%= absensi ? absensi.waktu_masuk : '' %>" required>
             </div>
 
             <!-- Waktu Keluar -->
             <div class="form-group">
                 <label for="waktu_keluar">Waktu Keluar:</label>
-                <input type="time" id="waktu_keluar" name="waktu_keluar" value="<%= absensi ? absensi.waktu_keluar : '' %>">
+                <input type="datetime-local" id="waktu_keluar" name="waktu_keluar" 
+                    value="<%= absensi ? absensi.waktu_keluar : '' %>">
             </div>
 
             <!-- Keperluan -->

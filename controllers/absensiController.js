@@ -11,17 +11,19 @@ exports.getAbsensi = async (req, res) => {
 exports.getAbsensiForm = async (req, res) => {
     let absensi = null;
     const absensi_id = req.params.absensi_id;
+    const room_id = req.query.room_id; // Ambil room_id dari query parameter
 
     // Mengambil data ruangan
-    const rooms = await ruanganModel.getroom(); // Mengambil semua ruangan
+    const rooms = await ruanganModel.getroom();
 
     if (absensi_id) {
         absensi = await absensiModel.getAbsensiById(absensi_id);
     }
 
-    // Render form absensi dan kirimkan data absensi (jika ada) dan data ruangan
-    res.render('absensi/form', { absensi, rooms });
+    // Render form absensi, kirimkan data ruangan dan absensi
+    res.render('absensi/form', { absensi, rooms, room_id }); // Kirimkan room_id ke view
 };
+
 
 // Menyimpan Absensi Baru
 exports.createAbsensi = async (req, res) => {
